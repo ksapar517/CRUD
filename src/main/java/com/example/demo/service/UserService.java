@@ -35,6 +35,15 @@ public class UserService {
             return e.getMessage();
         }
     }
+    public User getUser(Long id) {
+        User user = userRepository.findById(id).orElse(null);
+        if (user == null) {
+            user.setError("not found");
+            return (User) Collections.singletonList(user);
+        }
+        return user;
+    }
+
 
     public List<UserDto> read() {
         UserDto resp = new UserDto();
@@ -93,14 +102,15 @@ public class UserService {
     @Transactional
     public String delete(Long id) {
         try {
+            System.out.println(id+"<---------------");
             if (userRepository.existsById(id)) {
                 userRepository.deleteById(id);
                 return "Deleted Successfully";
             } else {
-                return "User not found";
+                return "";
             }
         } catch (Exception e) {
-            return "Error deleting user: " + e.getMessage();
+            return "";
         }
     }
 

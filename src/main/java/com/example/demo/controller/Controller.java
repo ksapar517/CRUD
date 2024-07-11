@@ -6,31 +6,49 @@ import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping(("user"))
+@org.springframework.stereotype.Controller
+@RequestMapping("/users")
 @RequiredArgsConstructor
 public class Controller {
     private final UserService userService;
 
     @PostMapping("/create")
-    public ResponseEntity<Object> create(@RequestBody UserDto userDto) {
-        return ResponseEntity.ok(userService.create(userDto));
+    public String create(@ModelAttribute("User") UserDto userDto) {
+        System.out.println(userDto);
+        userService.create(userDto);
+        return "userCreate";
     }
     @GetMapping("/read")
-    public ResponseEntity<List<UserDto>> read() {
-        return ResponseEntity.ok(userService.read());
-    }
-    @PostMapping("/update")
-    public ResponseEntity<User> update(@RequestBody UserDto info) {
-        return ResponseEntity.ok(userService.update(info));
+    public String read(Model model) {
+        model.addAttribute("users", userService.read());
+        return "read";
     }
 
-    @GetMapping("/delete")
-    public ResponseEntity<Object> delete(@RequestParam Long id) {
-        return ResponseEntity.ok(userService.delete(id));
+    @GetMapping("/info/{userId}")
+    public String getUserInfo(@PathVariable Long userId, Model model) {
+        User user = userService.getUser(userId);
+        model.addAttribute("user", user);
+        return "info";
+    }
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute("User") UserDto userDto) {
+        userService.update(userDto);
+        return "userUpdate";
+    }
+
+    @GetMapping("/delete/{userId}")
+    public String delete(@PathVariable Long userId, Model model) {
+        System.out.println(userId);
+        String aa = userService.delete(userId);
+        if(aa != null) {
+            return "delete";
+        }else
+        return "error";
     }
 }

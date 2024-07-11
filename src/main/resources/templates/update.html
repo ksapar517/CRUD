@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Update</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            margin-bottom: 10px;
+        }
+        .button {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        input[type="text"], input[type="date"] {
+            padding: 5px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+<h1>User Update</h1>
+<form method="post" th:action="@{/users/update}">
+    <input type="hidden" name="id" th:value="${user.id}">
+    <ul>
+        <li><strong>ID</strong>: <span th:text="${user.id}"></span></li>
+        <li><strong>Name</strong>: <input type="text" name="name" th:value="${user.name}"></li>
+        <li><strong>Lastname</strong>: <input type="text" name="lastname" th:value="${user.lastname}"></li>
+        <li><strong>Birthday</strong>: <input type="date" name="birthday" th:value="${#dates.format(user.birthday, 'yyyy-MM-dd')}"></li>
+    </ul>
+    <button type="submit" class="button">Save Changes</button>
+</form>
+<h6> </h6>
+<a th:href="@{/users/info/{userId}(userId=${user.id})}" class="button">Cancel</a>
+
+</body>
+</html>

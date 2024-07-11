@@ -1,0 +1,85 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.user-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.button-primary {
+    background-color: #4CAF50;
+}
+
+.button-primary:hover {
+    background-color: #45a049;
+}
+
+.button-danger {
+    background-color: #dc3545;
+}
+
+.button-danger:hover {
+    background-color: #c82333;
+}
+
+.button-back {
+    background-color: #007bff;
+}
+
+.button-back:hover {
+    background-color: #0056b3;
+}
+
+.user-table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${user.name} + ' &ndash; User Info'"></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            margin-bottom: 10px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<h1 th:text="${user.name}"></h1>
+<ul>
+    <li><strong>ID</strong>: <span th:text="${user.id}"></span></li>
+    <li><strong>Name</strong>: <span th:text="${user.name}"></span></li>
+    <li><strong>Lastname</strong>: <span th:text="${user.lastname}"></span></li>
+    <li><strong>Birthday</strong>: <span th:text="${user.birthday}"></span></li>
+</ul>
+
+<a th:href="@{/interface/update/{userId}(userId=${user.id})}" class="button">Update</a>
+
+<a th:href="@{/users/delete/{userId}(userId=${user.id})}">
+    <button>Delete</button>
+</a>
+
+<a href="/users/read" class="button">Back</a>
+</body>
+</html>
